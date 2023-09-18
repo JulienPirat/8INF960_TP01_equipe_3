@@ -8,7 +8,7 @@ public class CasseBrique_RPMC : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "AbilitySystem", "GameplayTags", "Niagara" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

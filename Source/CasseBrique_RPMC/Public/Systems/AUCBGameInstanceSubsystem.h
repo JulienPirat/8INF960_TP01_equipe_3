@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputMappingContext.h"
 #include "GameFramework/PlayerInput.h"
 #include "UObject/Object.h"
 #include "AUCBGameInstanceSubsystem.generated.h"
@@ -17,5 +18,6 @@ class CASSEBRIQUE_RPMC_API UAUCBGameInstanceSubsystem : public UGameInstanceSubs
 
 public:
 	UPROPERTY(BlueprintReadWrite)
-	FInputActionKeyMapping MappingContext;
+	TObjectPtr<UInputMappingContext> MappingContext;
+	
 };
