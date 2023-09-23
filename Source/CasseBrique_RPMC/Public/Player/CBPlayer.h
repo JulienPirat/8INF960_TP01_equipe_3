@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputMappingContext.h"
 #include "GameFramework/Pawn.h"
 #include "CBPlayer.generated.h"
 
@@ -38,6 +39,9 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float MovementSpeed = 100.f;
+
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<UInputMappingContext> MappingContext;
 	
 protected:
 	// Called when the game starts or when spawned
