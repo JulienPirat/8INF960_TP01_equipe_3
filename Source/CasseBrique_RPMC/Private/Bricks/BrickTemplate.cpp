@@ -3,6 +3,7 @@
 
 #include "Bricks/BrickTemplate.h"
 
+#include "Ball/Ball.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystem.h"
@@ -32,7 +33,16 @@ void ABrickTemplate::BeginPlay()
 
 void ABrickTemplate::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
-	//TODO Overlap when the ball is implemented
+	if (auto Ball = Cast<ABall>(OtherActor)) {
+		
+		FVector BallVelocity = Ball->StaticMesh->GetPhysicsLinearVelocity();
+		BallVelocity.Y *= -1;
+		Ball->StaticMesh->SetPhysicsLinearVelocity(BallVelocity);
+		if (HitSound) {
+
+			UGameplayStatics::PlaySound2D( GetWorld(), HitSound);
+		}
+	}
 }
 
 void ABrickTemplate::BeforeDestroy()
@@ -50,6 +60,21 @@ void ABrickTemplate::BeforeDestroy()
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DestroyParticle, ParticleT, true);
 	}
 	this->Destroy();
+}
+
+void ABrickTemplate::getDamage(int damage, ABall* Ball)
+{
+	nbLife -= damage;
+	//Particule Ball
+	if(this->nbLife <= 0)
+	{
+		//Ball->addScore(1);
+		if (DestructionSound) {
+
+			UGameplayStatics::PlaySound2D( GetWorld(), DestructionSound);
+		}
+		BeforeDestroy();
+	}
 }
 
 
