@@ -26,27 +26,30 @@ void AFileMap::BeginPlay()
 	
 	TArray<FString> LinesFile;
 	ResText.ParseIntoArrayLines(LinesFile);
-	FVector SpawnLocation(0.0f, 0.0f, 50.0f);
-	FRotator SpawnRotation(0.0f, 0.0f, 0.0f);
+	//FVector SpawnLocation(0.0f, 0.0f, 50.0f);
+	FRotator SpawnRotation(0.0f, 90.0f, 0.0f);
 	
-	for (int32 i = 0; i < LinesFile.Num(); i++)
+	FVector SpawnLocation = this->GetActorLocation();
+	SpawnLocation.Z +=50.0f;
+	
+	for (int32 i = 1; i < LinesFile.Num()+1; i++)
 	{
 		SpawnLocation.Y = i * dimensionY;
-		SpawnLocation.X = 0.0f;
+		SpawnLocation.X = this->GetActorLocation().X;
 		
-		for (int32 j = 0; j < LinesFile[i].Len(); j++)
+		for (int32 j = 1; j < LinesFile[i-1].Len()+1; j++)
 		{
 			wchar_t WallLettre = *"X";
 			wchar_t DestructibleWallLettre = *"O";
 			SpawnLocation.X = j * dimensionY;
 			
-			if(LinesFile[i][j] == WallLettre)
+			if(LinesFile[i-1][j-1] == WallLettre)
 			{
 				UE_LOG(LogTemp, Display, TEXT("X"));
 				SpawnLocation.X = j * dimensionX;
 				GetWorld()->SpawnActor<ABrickTemplate>(Brick, SpawnLocation, SpawnRotation);
 			}
-			if(LinesFile[i][j] == DestructibleWallLettre)
+			if(LinesFile[i-1][j-1] == DestructibleWallLettre)
 			{
 				UE_LOG(LogTemp, Display, TEXT("O"));
 				//GetWorld()->SpawnActor<Stati>(DestructibleWall, SpawnLocation, SpawnRotation);

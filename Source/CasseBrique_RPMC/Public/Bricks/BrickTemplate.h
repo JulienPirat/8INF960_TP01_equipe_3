@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Ball/Ball.h"
 #include "GameFramework/Actor.h"
 #include "BrickTemplate.generated.h"
 
@@ -44,4 +45,7 @@ public:
 	
 	UFUNCTION()
 	void BeforeDestroy();
+
+	UFUNCTION()
+	void getDamage(int damage, ABall* Ball);
 };
