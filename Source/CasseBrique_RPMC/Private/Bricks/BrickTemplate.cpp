@@ -7,7 +7,7 @@
 #include "Ball/Ball.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Particles/ParticleSystem.h"
+#include "NiagaraFunctionLibrary.h"
 
 
 // Sets default values
@@ -50,15 +50,8 @@ void ABrickTemplate::BeforeDestroy()
 {
 	if (IsValid(DestroyParticle))
 	{
-		// Transform --> Location, Rotation, Scale
-		FTransform ParticleT;
-		// Spawn Location
-		ParticleT.SetLocation(this->GetActorLocation());
-		// World Size Particule
-		ParticleT.SetScale3D(FVector(2, 2, 2));
-		
 		// Spawn Particule
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DestroyParticle, ParticleT, true);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),DestroyParticle,this->GetActorLocation(),this->GetActorRotation(), FVector(3),true,true);
 	}
 	
 	this->Destroy();

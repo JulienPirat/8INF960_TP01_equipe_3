@@ -31,8 +31,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Sounds")
 	class USoundBase* DestructionSound;
 	
-	UPROPERTY(EditAnywhere, Category="Particles")
-	class UParticleSystem* DestroyParticle;
+	UPROPERTY(EditAnywhere, Category="Niagara")
+	class UNiagaraSystem* DestroyParticle;
 	
 protected:
 	// Called when the game starts or when spawned
