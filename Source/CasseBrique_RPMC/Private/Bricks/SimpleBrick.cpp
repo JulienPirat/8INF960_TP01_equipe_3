@@ -34,7 +34,6 @@ void ASimpleBrick::OnEndOverlap(AActor* MyActor, AActor* OtherActor)
 void ASimpleBrick::BeforeDestroy()
 {
 	Super::BeforeDestroy();
-	//TODO Appeler Le Add Score
 	auto _gameInstance = GetGameInstance();
 	if (auto GameInstance = Cast<UAUCBGameInstance>(_gameInstance))
 	{
