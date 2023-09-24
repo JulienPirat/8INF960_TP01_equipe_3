@@ -37,8 +37,8 @@ void ABrickTemplate::OnOverlap(AActor* MyActor, AActor* OtherActor)
 	if (auto Ball = Cast<ABall>(OtherActor)) {
 		
 		FVector BallVelocity = Ball->StaticMesh->GetPhysicsLinearVelocity();
-		BallVelocity.Y *= -1;
-		Ball->StaticMesh->SetPhysicsLinearVelocity(BallVelocity);
+		//BallVelocity.Y *= -1;
+		//Ball->StaticMesh->SetPhysicsLinearVelocity(BallVelocity);
 		if (HitSound) {
 
 			UGameplayStatics::PlaySound2D( GetWorld(), HitSound);
@@ -60,6 +60,7 @@ void ABrickTemplate::BeforeDestroy()
 		// Spawn Particule
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DestroyParticle, ParticleT, true);
 	}
+	
 	this->Destroy();
 }
 
@@ -74,7 +75,13 @@ void ABrickTemplate::getDamage(int damage, ABall* Ball)
 
 			UGameplayStatics::PlaySound2D( GetWorld(), DestructionSound);
 		}
-		BeforeDestroy();
+
+		//float TimerDelay = 0.1;
+		FTimerHandle TimerHandle;
+		FTimerDelegate TimerDel;
+		TimerDel.BindUFunction(this, FName("BeforeDestroy"));
+		GetWorldTimerManager().SetTimer(TimerHandle,TimerDel, 0.01 , false);
+		
 	}
 }
 
