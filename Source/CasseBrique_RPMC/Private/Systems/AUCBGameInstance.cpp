@@ -38,6 +38,11 @@ void UAUCBGameInstance::DecreaseTime()
 {
 	timeBank -= 1;
 	OnTimeChangedDelegate.Broadcast(timeBank);
+
+	if (timeBank == 0)
+	{
+		OnLoseByTime.Broadcast();
+	}
 }
 
 void UAUCBGameInstance::AddTime(int timeToAdd)

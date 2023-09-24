@@ -8,6 +8,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnScoreChanged, int, NewScore);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTimeChanged, int, NewTime);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnLoseByTime);
 
 /**
  * 
@@ -23,6 +24,9 @@ public :
 
 	UPROPERTY(BlueprintAssignable)
 	FOnTimeChanged OnTimeChangedDelegate;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnLoseByTime OnLoseByTime;
 	
 	UPROPERTY(BlueprintReadOnly)
 	int score = 0; //Le score du joueur dans la partie
