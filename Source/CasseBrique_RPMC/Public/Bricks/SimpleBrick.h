@@ -21,4 +21,6 @@ protected:
 	virtual void BeginPlay() override;
 
 	void OnEndOverlap(AActor* MyActor, AActor* OtherActor);
+
+	void BeforeDestroy() override;
 };

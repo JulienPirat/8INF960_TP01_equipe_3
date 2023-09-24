@@ -44,7 +44,7 @@ public:
 	virtual void OnEndOverlap(AActor* MyActor, AActor* OtherActor);
 	
 	UFUNCTION()
-	void BeforeDestroy();
+	virtual void BeforeDestroy();
 
 	UFUNCTION()
 	void getDamage(int damage, ABall* Ball);
