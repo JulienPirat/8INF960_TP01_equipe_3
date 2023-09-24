@@ -33,6 +33,8 @@ void ABall::BeginPlay()
 {
 	Super::BeginPlay();
 	ProjectileMovementComponent->InitialSpeed = Speed;
+
+	StartPosition = this->GetActorLocation();
 }
 
 void ABall::SetSpeed(float s)
@@ -52,6 +54,12 @@ void ABall::SetSpeed(float s)
 float ABall::GetSpeed() const
 {
 	return Speed;
+}
+
+void ABall::ReplaceBall()
+{
+	this->SetActorLocation(StartPosition);
+	ProjectileMovementComponent->InitialSpeed = Speed;
 }
 
 void ABall::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)

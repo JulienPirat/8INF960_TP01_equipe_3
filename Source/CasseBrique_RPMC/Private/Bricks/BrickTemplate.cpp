@@ -29,10 +29,10 @@ ABrickTemplate::ABrickTemplate()
 void ABrickTemplate::BeginPlay()
 {
 	Super::BeginPlay();
-	this->OnActorBeginOverlap.AddDynamic(this,&ABrickTemplate::OnOverlap);
+	this->OnActorEndOverlap.AddDynamic(this,&ABrickTemplate::OnEndOverlap);
 }
 
-void ABrickTemplate::OnOverlap(AActor* MyActor, AActor* OtherActor)
+void ABrickTemplate::OnEndOverlap(AActor* MyActor, AActor* OtherActor)
 {
 	if (auto Ball = Cast<ABall>(OtherActor)) {
 		

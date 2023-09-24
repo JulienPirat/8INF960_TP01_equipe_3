@@ -41,7 +41,7 @@ protected:
 public:
 	
 	UFUNCTION()
-	virtual void OnOverlap(AActor* MyActor, AActor* OtherActor);
+	virtual void OnEndOverlap(AActor* MyActor, AActor* OtherActor);
 	
 	UFUNCTION()
 	void BeforeDestroy();

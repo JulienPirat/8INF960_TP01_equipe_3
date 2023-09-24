@@ -15,12 +15,12 @@ ASimpleBrick::ASimpleBrick()
 void ASimpleBrick::BeginPlay()
 {
 	Super::BeginPlay();
-	this->OnActorBeginOverlap.AddDynamic(this,&ASimpleBrick::OnOverlap);
+	this->OnActorEndOverlap.AddDynamic(this,&ASimpleBrick::OnEndOverlap);
 }
 
-void ASimpleBrick::OnOverlap(AActor* MyActor, AActor* OtherActor)
+void ASimpleBrick::OnEndOverlap(AActor* MyActor, AActor* OtherActor)
 {
-	Super::OnOverlap(MyActor, OtherActor);
+	Super::OnEndOverlap(MyActor, OtherActor);
 	
 	if (auto Ball = Cast<ABall>(OtherActor)) {
 		Super::getDamage(1, Ball);

@@ -34,6 +34,9 @@ public:
 	UFUNCTION(BlueprintGetter)
 	float GetSpeed() const;
 
+	UFUNCTION(BlueprintCallable)
+	void ReplaceBall();
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -43,5 +46,6 @@ protected:
 private:
 	UPROPERTY(BlueprintGetter=GetSpeed, BlueprintSetter=SetSpeed)
 	float Speed;
-	
+
+	FVector StartPosition;
 };

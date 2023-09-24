@@ -3,22 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BrickTemplate.h"
 #include "GameFramework/Actor.h"
-#include "SimpleBrick.generated.h"
+#include "ReplaceBallActor.generated.h"
 
 UCLASS()
-class CASSEBRIQUE_RPMC_API ASimpleBrick : public ABrickTemplate
+class CASSEBRIQUE_RPMC_API AReplaceBallActor : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	ASimpleBrick();
+	AReplaceBallActor();
 
+	UPROPERTY(EditAnywhere)
+	class UBoxComponent* boxCollision;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void OnEndOverlap(AActor* MyActor, AActor* OtherActor);
+public:
+	UFUNCTION()
+	virtual void OnBeginOverlap(AActor* MyActor, AActor* OtherActor);
 };
