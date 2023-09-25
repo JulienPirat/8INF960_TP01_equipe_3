@@ -22,7 +22,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* StaticMesh;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UProjectileMovementComponent* ProjectileMovementComponent;
 	
 	//Value used only to test speed from editor
