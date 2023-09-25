@@ -19,6 +19,12 @@ public:
 	UPROPERTY(EditDefaultsOnly,Category="ActorSpawning")
 	TSubclassOf<ABrickTemplate> Brick;
 
+	UPROPERTY(EditDefaultsOnly,Category="ActorSpawning")
+	TSubclassOf<AActor> SpeedItem; 
+
+	UPROPERTY(EditDefaultsOnly,Category="ActorSpawning")
+	TSubclassOf<AActor> ScaleItem;
+	
 	UPROPERTY(EditAnywhere)
 	float dimensionY = 150;
 

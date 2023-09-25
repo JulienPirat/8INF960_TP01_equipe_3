@@ -3,6 +3,8 @@
 
 #include "Utilities/FileMap.h"
 
+#include "Item/Item.h"
+
 
 // Sets default values
 AFileMap::AFileMap()
@@ -41,6 +43,8 @@ void AFileMap::BeginPlay()
 		{
 			wchar_t WallLettre = *"X";
 			wchar_t DestructibleWallLettre = *"O";
+			wchar_t SpeedItemLettre = *"V";
+			wchar_t ScaleItemLettre = *"S";
 			SpawnLocation.X = j * dimensionY;
 			
 			if(LinesFile[i-1][j-1] == WallLettre)
@@ -53,6 +57,18 @@ void AFileMap::BeginPlay()
 			{
 				UE_LOG(LogTemp, Display, TEXT("O"));
 				//GetWorld()->SpawnActor<Stati>(DestructibleWall, SpawnLocation, SpawnRotation);
+			}
+			if(LinesFile[i-1][j-1] == SpeedItemLettre)
+			{
+				UE_LOG(LogTemp, Display, TEXT("V"));
+				SpawnLocation.X = j * dimensionX;
+				GetWorld()->SpawnActor<AItem>(SpeedItem, SpawnLocation, SpawnRotation);
+			}
+			if(LinesFile[i-1][j-1] == ScaleItemLettre)
+			{
+				UE_LOG(LogTemp, Display, TEXT("S"));
+				SpawnLocation.X = j * dimensionX;
+				GetWorld()->SpawnActor<AItem>(ScaleItem, SpawnLocation, SpawnRotation);
 			}
 		}
 	}
