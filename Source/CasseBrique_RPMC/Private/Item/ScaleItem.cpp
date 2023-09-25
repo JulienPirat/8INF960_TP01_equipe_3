@@ -42,6 +42,6 @@ void AScaleItem::SetOldValue()
 {
 	Super::SetOldValue();
 
-	OldValue = Ball->GetActorScale().X;
+	OldValue = Ball->GetInitialScale();
 }
 

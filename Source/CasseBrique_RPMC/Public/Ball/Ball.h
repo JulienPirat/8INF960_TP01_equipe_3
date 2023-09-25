@@ -64,7 +64,10 @@ public:
 	void SpeedNiagaraEffect() const;
 	void ScaleNiagaraEffect() const;
 	void ClearNiagaraEffect() const;
-	
+
+	UFUNCTION(BlueprintGetter)
+	float GetInitialScale();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -76,7 +79,8 @@ private:
 
 	float Speed;
 	FVector StartPosition;
-	
+
+	float InitialScale;
 	float ColorMixer;
 
 	FLinearColor ActualInnerColor;

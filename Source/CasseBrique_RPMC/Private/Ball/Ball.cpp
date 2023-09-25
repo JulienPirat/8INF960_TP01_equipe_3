@@ -46,6 +46,7 @@ void ABall::BeginPlay()
 	SetSpeed(0);
 	SetSpeed(ProjectileMovementComponent->InitialSpeed);
 	StartPosition = this->GetActorLocation();
+	InitialScale = this->GetActorScale3D().X;
 }
 
 void ABall::SetSpeed(float s)
@@ -169,4 +170,9 @@ void ABall::ScaleNiagaraEffect() const
 void ABall::ClearNiagaraEffect() const
 {
 	UNiagaraFunctionLibrary::SpawnSystemAttached(ClearEffect,SphereCollision,FName("None"),GetActorLocation(),GetActorRotation(),EAttachLocation::KeepWorldPosition,true,true);
+}
+
+float ABall::GetInitialScale()
+{
+	return InitialScale;
 }
