@@ -72,7 +72,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
 
 private:
 	UPROPERTY(BlueprintGetter=GetSpeed, BlueprintSetter=SetSpeed)
