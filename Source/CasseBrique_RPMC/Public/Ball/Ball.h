@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "NiagaraComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Ball.generated.h"
@@ -23,7 +24,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UProjectileMovementComponent* ProjectileMovementComponent;
-
+	
 	//Value used only to test speed from editor
 	UPROPERTY(EditInstanceOnly, Category="Ball properties")
 	float ActualSpeed;
@@ -33,19 +34,58 @@ public:
 
 	UFUNCTION(BlueprintGetter)
 	float GetSpeed() const;
+	
+	UPROPERTY(EditAnywhere)
+	UNiagaraSystem* SpeedEffect;
 
 	UFUNCTION(BlueprintCallable)
 	void ReplaceBall();
+	
+	UPROPERTY(EditAnywhere)
+	UNiagaraSystem* ScaleEffect;
+	
+	UPROPERTY(EditAnywhere)
+	UNiagaraSystem* ClearEffect;
+	
+	UPROPERTY(EditAnywhere)
+	FLinearColor InnerColor;
+
+	UPROPERTY(EditAnywhere)
+	FLinearColor OuterColor;
+
+
+	UFUNCTION()
+	void AddColor(FLinearColor InnerColorToAdd, FLinearColor OuterColorToAdd);
+
+	UFUNCTION()
+	void RemoveColor(FLinearColor InnerColorToRemove, FLinearColor OuterColorToRemove);
+
+	void SpeedNiagaraEffect() const;
+	void ScaleNiagaraEffect() const;
+	void ClearNiagaraEffect() const;
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
 private:
 	UPROPERTY(BlueprintGetter=GetSpeed, BlueprintSetter=SetSpeed)
-	float Speed;
 
+	float Speed;
 	FVector StartPosition;
+	
+	float ColorMixer;
+
+	FLinearColor ActualInnerColor;
+	FLinearColor ActualOuterColor;
+
+	UPROPERTY()
+	UMaterialInstanceDynamic* DynMaterial;
+
+
+	
+
+	
 };
