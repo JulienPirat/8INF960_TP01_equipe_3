@@ -3,9 +3,13 @@
 
 #include "Player/CBPlayer.h"
 
+#include <iostream>
+#include <string>
+
 #include "Ball/Ball.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 
 
 // Sets default values
@@ -46,9 +50,5 @@ void ACBPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ACBPlayer::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
-	if(auto SimpleBall = Cast<ABall>(OtherActor))
-	{
-		//TODO La balle fais un truc
-	}
 }
 

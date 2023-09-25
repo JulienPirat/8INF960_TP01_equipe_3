@@ -57,7 +57,7 @@ void ABall::SetSpeed(float s)
 		
 	if(ProjectileMovementComponent->Velocity.IsZero())
 	{
-		ProjectileMovementComponent->Velocity = FVector(-1,0.5,0);
+		ProjectileMovementComponent->Velocity = FVector(1,0,0);
 	}
 		
 	ProjectileMovementComponent->Velocity *= Speed;
