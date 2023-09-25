@@ -45,6 +45,8 @@ void AFileMap::BeginPlay()
 			wchar_t DestructibleWallLettre = *"O";
 			wchar_t SpeedItemLettre = *"V";
 			wchar_t ScaleItemLettre = *"S";
+			wchar_t WallSpawnScaleItemLettre = *"Y";
+			wchar_t WallSpawnSpeedItemeLettre = *"Z";
 			SpawnLocation.X = j * dimensionY;
 			
 			if(LinesFile[i-1][j-1] == WallLettre)
@@ -69,6 +71,18 @@ void AFileMap::BeginPlay()
 				UE_LOG(LogTemp, Display, TEXT("S"));
 				SpawnLocation.X = j * dimensionX;
 				GetWorld()->SpawnActor<AItem>(ScaleItem, SpawnLocation, SpawnRotation);
+			}
+			if(LinesFile[i-1][j-1] == WallSpawnScaleItemLettre)
+			{
+				UE_LOG(LogTemp, Display, TEXT("Y"));
+				SpawnLocation.X = j * dimensionX;
+				GetWorld()->SpawnActor<ABrickTemplate>(Brick, SpawnLocation, SpawnRotation)->SetSpawnItem(ScaleItem);
+			}
+			if(LinesFile[i-1][j-1] == WallSpawnSpeedItemeLettre)
+			{
+				UE_LOG(LogTemp, Display, TEXT("Z"));
+				SpawnLocation.X = j * dimensionX;
+				GetWorld()->SpawnActor<ABrickTemplate>(Brick, SpawnLocation, SpawnRotation)->SetSpawnItem(SpeedItem);
 			}
 		}
 	}

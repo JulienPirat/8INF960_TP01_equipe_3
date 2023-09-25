@@ -5,11 +5,15 @@
 #include "CoreMinimal.h"
 #include "Ball/Ball.h"
 #include "GameFramework/Actor.h"
+#include "Item/Item.h"
 #include "BrickTemplate.generated.h"
 
 UCLASS()
 class CASSEBRIQUE_RPMC_API ABrickTemplate : public AActor
 {
+	
+
+private:
 	GENERATED_BODY()
 
 public:
@@ -33,11 +37,14 @@ public:
 	
 	UPROPERTY(EditAnywhere, Category="Niagara")
 	class UNiagaraSystem* DestroyParticle;
-	
+
+	UPROPERTY(EditAnywhere, Category="Item")
+	class UClass* ItemToSpawn;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
+	
 public:
 	
 	UFUNCTION()
@@ -48,4 +55,7 @@ public:
 
 	UFUNCTION()
 	void getDamage(int damage, ABall* Ball);
+
+	UFUNCTION()
+	void SetSpawnItem(UClass* Item);
 };

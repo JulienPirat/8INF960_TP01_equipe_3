@@ -22,7 +22,11 @@ ABrickTemplate::ABrickTemplate()
 	// Create the mesh for the Brick
 	staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Brick"));
 	staticMesh->SetupAttachment(boxCollision);
+
+	ItemToSpawn = nullptr;
 }
+
+
 
 // Called when the game starts or when spawned
 void ABrickTemplate::BeginPlay()
@@ -52,6 +56,10 @@ void ABrickTemplate::BeforeDestroy()
 		// Spawn Particule
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(),DestroyParticle,this->GetActorLocation(),this->GetActorRotation(), FVector(3),true,true);
 	}
+	if(ItemToSpawn)
+	{
+		GetWorld()->SpawnActor<AItem>(ItemToSpawn, GetActorLocation(),GetActorRotation());
+	}
 	
 	this->Destroy();
 }
@@ -77,4 +85,8 @@ void ABrickTemplate::getDamage(int damage, ABall* Ball)
 	}
 }
 
+void ABrickTemplate::SetSpawnItem(UClass* Item)
+{
+	ItemToSpawn = Item;
+}
 
