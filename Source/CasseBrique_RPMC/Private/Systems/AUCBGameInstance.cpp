@@ -28,6 +28,12 @@ void UAUCBGameInstance::AddScoreBigBrick()
 	OnScoreChangedDelegate.Broadcast(score);
 }
 
+void UAUCBGameInstance::Initialize()
+{
+	score = 0;
+	timeBank = 60;
+}
+
 void UAUCBGameInstance::StartTimer()
 {
 	FTimerHandle TimerHandle;

@@ -43,6 +43,9 @@ public :
 	void AddScoreBigBrick(); //Ajoute le score correspondant a une grosse briaue (qui se brise en 5 coups)
 
 	UFUNCTION(BlueprintCallable)
+	void Initialize();
+
+	UFUNCTION(BlueprintCallable)
 	void StartTimer();	
 	
 	UFUNCTION(BlueprintCallable)
