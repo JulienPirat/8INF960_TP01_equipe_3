@@ -53,7 +53,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	FLinearColor OuterColor;
 
-
+	virtual void NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
+	
 	UFUNCTION()
 	void AddColor(FLinearColor InnerColorToAdd, FLinearColor OuterColorToAdd);
 

@@ -43,7 +43,8 @@ void ABall::BeginPlay()
 	}
 	
 	ProjectileMovementComponent->InitialSpeed = Speed;
-
+	SetSpeed(0);
+	SetSpeed(ProjectileMovementComponent->InitialSpeed);
 	StartPosition = this->GetActorLocation();
 }
 
@@ -56,7 +57,7 @@ void ABall::SetSpeed(float s)
 		
 	if(ProjectileMovementComponent->Velocity.IsZero())
 	{
-		ProjectileMovementComponent->Velocity = FVector(-1,0,0);
+		ProjectileMovementComponent->Velocity = FVector(-1,0.5,0);
 	}
 		
 	ProjectileMovementComponent->Velocity *= Speed;
@@ -86,6 +87,23 @@ void ABall::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 	{
 		SetSpeed(ActualSpeed);
 	}
+}
+
+void ABall::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved,
+	FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+{
+	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+
+	FVector SurfaceNormal = HitNormal.GetSafeNormal();
+	FVector BounceDirection = ProjectileMovementComponent->Velocity.GetSafeNormal().MirrorByVector(SurfaceNormal);
+	float BounceSpeed = GetSpeed();
+
+	//Case when the ball is blocked
+	while(BounceDirection == FVector::Zero())
+		BounceDirection = FVector(FMath::RandRange(0.0f,1.0f),FMath::RandRange(0.0f,1.0f),0);
+	ProjectileMovementComponent->Velocity =  BounceDirection * BounceSpeed;
+	
+	
 }
 
 void ABall::AddColor(FLinearColor InnerColorToAdd, FLinearColor OuterColorToAdd)
