@@ -55,14 +55,4 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-private:
-	
-	/**
-	 * Fonction qui gère l'overlap
-	 * @param MyActor Self
-	 * @param OtherActor Overlaped Actor
-	 */
-	UFUNCTION()
-	void OnOverlap(AActor* MyActor, AActor* OtherActor);
 };

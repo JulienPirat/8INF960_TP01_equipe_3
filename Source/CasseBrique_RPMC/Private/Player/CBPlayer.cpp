@@ -37,18 +37,11 @@ ACBPlayer::ACBPlayer()
 void ACBPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	//Attache l'overlap avec la fonction OnOverlap
-	this->OnActorBeginOverlap.AddDynamic(this,&ACBPlayer::OnOverlap);
 }
 
 // Called to bind functionality to input
 void ACBPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
-void ACBPlayer::OnOverlap(AActor* MyActor, AActor* OtherActor)
-{
 }
 
