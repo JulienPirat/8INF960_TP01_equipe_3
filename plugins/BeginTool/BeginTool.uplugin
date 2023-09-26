@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "BeginTool",
+	"Description": "Menu and tools to have a good and easy start",
+	"Category": "Other",
+	"CreatedBy": "Benjamin ROBERT",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "BeginTool",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
